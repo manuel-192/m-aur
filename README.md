@@ -1,30 +1,19 @@
 # m-aur
 A selection of pre-built AUR packages.
 
-## Important news
-Important news can always be found at https://github.com/manuel-192/m-repo-info/blob/master/README.md.
+[Usage & News](../../../m-repo-info/blob/master/README.md)<br>
+[Repo details](../../../m-more/releases)
 
 ## Overview
-This repo includes:
-- certain hand picked and pre-built [AUR](https://aur.archlinux.org/packages) packages like
-  - bashdb
-  - ccrypt
-  - opera-beta
-  - opera-developer
-  - pamac-aur
-  - pamac-aur-git
-  - samsung-unified-driver-common
-  - virtualbox-ext-oracle
-  - xfe
-
-## How to use this repo?
-Check these [instructions](../../../m-repo-info/blob/master/README.md)<br>
-[List of packages](../../../m-more/releases) (same as the <b>Releases</b> button above).
-
-### Using a mirrorlist for this repo
-Repo **[m-m]** includes a package named **mirrorlist-m** that can create a mirrorlist for of all packages in Manuel's repos.
-It is like an Arch mirrorlist (/etc/pacman.d/mirrorlist).<br>
-If you install that package, list of mirrors stay always up to date even when the mirrors are changed.
+This repo contains certain hand picked and pre-built [AUR](https://aur.archlinux.org/packages) packages like
+  - [bashdb](https://aur.archlinux.org/packages/bashdb)
+  - [ccrypt](https://aur.archlinux.org/packages/ccrypt)
+  - [opera-beta](https://aur.archlinux.org/packages/opera-beta)
+  - [opera-developer](https://aur.archlinux.org/packages/opera-developer)
+  - [pamac-aur-git](https://aur.archlinux.org/packages/pamac-aur-git)
+  - [samsung-unified-driver-common](https://aur.archlinux.org/packages/samsung-unified-driver-common)
+  - [virtualbox-ext-oracle](https://aur.archlinux.org/packages/virtualbox-ext-oracle)
+  - [xfe](https://aur.archlinux.org/packages/xfe)
 
 ## Special note
 Any of the packages here may be removed if there are good reasons to do so.
