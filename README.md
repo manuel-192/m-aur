@@ -1,6 +1,9 @@
 # m-aur
 A selection of pre-built AUR packages.
 
+## Important news
+Important news can always be found at https://github.com/manuel-192/m-repo-info/blob/master/README.md.
+
 ## Overview
 This repo includes:
 - certain hand picked and pre-built [AUR](https://aur.archlinux.org/packages) packages like
