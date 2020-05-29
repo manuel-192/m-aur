@@ -15,5 +15,9 @@ This repo contains certain hand picked and pre-built [AUR](https://aur.archlinux
   - [virtualbox-ext-oracle](https://aur.archlinux.org/packages/virtualbox-ext-oracle)
   - [xfe](https://aur.archlinux.org/packages/xfe)
 
+IMPORTANT NEWS:<br>
+- The pre-built opera packages are planned to be removed soon!<br>
+  If you wish them stay here, please let me know in the **Issues** tab above.
+
 ## Special note
 Any of the packages here may be removed if there are good reasons to do so.
