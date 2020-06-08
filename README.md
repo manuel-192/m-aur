@@ -15,7 +15,7 @@ This repo contains certain hand picked and pre-built [AUR](https://aur.archlinux
 
 IMPORTANT NEWS:<br>
 - The pre-built opera packages have been removed.<br>
-  They are still available in the *archive*, but will no more be updated.
+  They are still available in the *archive* releases, but will no more be updated.
 
 ## Special note
 Any of the packages here may be removed if there are good reasons to do so.
