@@ -14,7 +14,7 @@ This repo contains certain hand picked and pre-built [AUR](https://aur.archlinux
   - [xfe](https://aur.archlinux.org/packages/xfe)
 
 IMPORTANT NEWS:<br>
-- The pre-built opera packages have been removed.<br>
+- The pre-built **opera** packages have been removed.<br>
   They are still available in the *archive* releases, but will no more be updated.
 
 ## Special note
