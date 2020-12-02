@@ -1,4 +1,6 @@
+#!/bin/bash
 # Maintainer: Harvey <harv@gmx.de>
+
 license=('GPL' 'custom:Brother')
 arch=('x86_64')
 pkgname=brscan4
@@ -9,31 +11,37 @@ depends=('sane' 'libusb-compat')
 url="http://support.brother.com"
 install=$pkgname.install
 
-# [ "$CARCH" = "x86_64" ] && pkg="dlf006648/${pkgname}-${pkgver}-$pkgrel.x86_64.rpm" || pkg="dlf006647/${pkgname}-${pkgver}-$pkgrel.i386.rpm"
-# [ "$CARCH" = "x86_64" ] && pkg_md5sum="02329240d6f8943f8c9e8dd663878a1d" || pkg_md5sum="ee9abd2579b107ae13de3fb54cd82919"
+_pkgfile=${pkgname}-${pkgver}-${pkgrel}.x86_64.rpm
 
-source=("https://download.brother.com/welcome/dlf006648/${pkgname}-${pkgver}-$pkgrel.x86_64.rpm"
+source=("https://download.brother.com/welcome/dlf006648/$_pkgfile"
 	"agree.html"
 	mk-udev-rules)
-md5sums=('aa'
-	 'ccffb9a6f6d436b21be25b0241068981'
-	 '9a23d2af36609fbf2b0aa75269553701')
+
+md5sums=('02329240d6f8943f8c9e8dd663878a1d'
+         'ccffb9a6f6d436b21be25b0241068981'
+         '9a23d2af36609fbf2b0aa75269553701')
+sha512sums=('44492e80bfaf2ea2488bdc4ec9c3ad0c64a762fc65187f976c891664eb3925f969591ff26032513aa295e788ecce75202542e2021b85c05e85647a30ecfaee35'
+            '9638fe89f1c7c297ba74964c80ba3ef4b241c4d95be58a2d6063e4bacdb844361beb9a5f0c39334a8a5aa735733e22a791497a2c32cc321485ad3213a74b40ed'
+            '95d659e6c72d159ab63450fdc37c63517920f5b71a9b40e15bf5962e77061edb86864fd63c05d3a69c60badf405dc36374a42608211a706509b8ce61dd01d483')
 
 build() {
-  cd "$srcdir"
-  umask 022
-  mkdir -p etc/udev/rules.d
-  ./mk-udev-rules opt/brother/scanner/brscan4/{Brsane4.ini,models4/*.ini} > etc/udev/rules.d/40-$pkgname.rules
+    cd "$srcdir"
+    umask 022
+    mkdir -p etc/udev/rules.d
+    ./mk-udev-rules opt/brother/scanner/brscan4/{Brsane4.ini,models4/*.ini} > etc/udev/rules.d/40-$pkgname.rules
 }
 
 package() {
-  cp -r $srcdir/etc $pkgdir
-  cp -r $srcdir/opt $pkgdir
-  cp -r $srcdir/usr $pkgdir
-  install -D -m644 $srcdir/agree.html $pkgdir/usr/share/licenses/$pkgname/LICENSE.html
-  [ "$CARCH" = "x86_64" ] && mv $pkgdir/usr/lib64 $pkgdir/usr/lib
-  # move the links to the right direction
-  cd $pkgdir/usr/lib/sane
-  ln -sf libsane-brother4.so.1.0.7 $pkgdir/usr/lib/sane/libsane-brother4.so.1
-  ln -sf libsane-brother4.so.1 $pkgdir/usr/lib/sane/libsane-brother4.so
+    cp -r $srcdir/etc $pkgdir
+    cp -r $srcdir/opt $pkgdir
+    cp -r $srcdir/usr $pkgdir
+    install -D -m644 $srcdir/agree.html $pkgdir/usr/share/licenses/$pkgname/LICENSE.html
+    mv $pkgdir/usr/lib64 $pkgdir/usr/lib
+    # move the links to the right direction
+    pushd $pkgdir/usr/lib/sane >/dev/null
+    ln -sf libsane-brother4.so.1.0.7 $pkgdir/usr/lib/sane/libsane-brother4.so.1
+    ln -sf libsane-brother4.so.1 $pkgdir/usr/lib/sane/libsane-brother4.so
+    popd >/dev/null
+
+    rm ../$_pkgfile
 }
