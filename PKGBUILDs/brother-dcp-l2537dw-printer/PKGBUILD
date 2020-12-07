@@ -10,6 +10,7 @@ license=("EULA")
 _pkgfile=dcpl2537dwpdrv-${pkgver}-$pkgrel.i386.deb
 source=( "https://download.brother.com/welcome/dlf103575/$_pkgfile")
 sha256sums=('4860711eb65de5ea1c20814fb9f061c18ac5b18e1375f77a7433a1804a6e6faf')
+depends=(cups)
 
 package() {
   # This package is based off of the brother-mfc-l2710dw package due to the identical packaging. All credit should go to enginefeeder101 for the script.
