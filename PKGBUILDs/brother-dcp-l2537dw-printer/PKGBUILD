@@ -3,7 +3,7 @@
 pkgname=brother-dcp-l2537dw-printer
 
 InfoUrl="https://support.brother.com/g/b/downloadlist.aspx?c=fi&lang=fi&prod=dcpl2537dw_eu&os=128&flang=English"  # for DEB !!
-Old_pkgver=3.0.0  # manually change this when new version is detected
+Old_pkgver=4.0.0  # manually change this when new version is detected
 
 pkgver() {
     local Url="$InfoUrl"
