@@ -12,11 +12,12 @@ pkgver() {
     local Line=$(echo "$Urldata" | grep -A3 "$Search" | tail -n1)
     local Version=$(echo "$Line" | sed 's|.*(\([0-9][0-9\.\-]*\)).*|\1|')
     local Pkgver=$(echo "$Version" | cut -d '-' -f1)
+
     # show driver publishing date
-    if [ ! -r $TmpFile ] ; then  # show it only once
-       touch $TmpFile
+    if [ -r $TmpFile ] ; then         # show it while building !!
        local Date=$(echo "$Line" | sed 's|.*>\([0-9][0-9/]*\).*|\1|')
-       printf " %s: driver date: %s" "$pkgname" "$Date" >&2
+       printf " %s: driver date: %s" "$pkgname" "$Date " >&2
+       echo "BASH_SOURCE = ${BASH_SOURCE[@]}" >&2
     fi
     echo "$Pkgver"
 }
@@ -73,7 +74,7 @@ package() {
   ln -s "/opt/brother/Printers/$model/inf" "$pkgdir/opt/brother/Printers/$model/lpd/"
 
   rm ../$_pkgfile
-  rm $TmpFile
+  rm -f $TmpFile
 }
 # https://download.brother.com/welcome/dlf006893/linux-brprinter-installer-2.2.2-1.gz
 # https://download.brother.com/welcome/dlf103575/dcpl2537dwpdrv-4.0.0-1.i386.deb
