@@ -8,7 +8,7 @@ pkgver=0.4.9
 pkgrel=1
 pkgdesc="SANE drivers from Brother for brscan4 compatible models"
 depends=('sane' 'libusb-compat')
-url="http://support.brother.com"
+url="https://support.brother.com"
 install=$pkgname.install
 
 _pkgfile=${pkgname}-${pkgver}-${pkgrel}.x86_64.rpm
