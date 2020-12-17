@@ -16,7 +16,7 @@ pkgver() {
     if [ ! -r $TmpFile ] ; then  # show it only once
        touch $TmpFile
        local Date=$(echo "$Line" | sed 's|.*>\([0-9][0-9/]*\).*|\1|')
-       echo "$pkgname: driver date: $Date" >&2
+       printf " %s: driver date: %s" "$pkgname" "$Date" >&2
     fi
     echo "$Pkgver"
 }
