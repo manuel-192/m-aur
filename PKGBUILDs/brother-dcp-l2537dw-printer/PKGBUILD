@@ -15,7 +15,7 @@ pkgver() {
     # local Date=$(echo "$Line" | sed 's|.*>\([0-9][0-9/]*\).*|\1|')
 
     if [ "$Pkgver" != "$Old_pkgver" ] ; then
-       printf "#" >&2
+       printf "$Pkgver available! " >&2
        Old_pkger=$Pkgver
     fi
 
