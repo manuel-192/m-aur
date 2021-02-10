@@ -26,7 +26,9 @@ sha512sums=('c648db8d8543dec9e1cd556f2e0415c170c06935febd1373d783191b159ed9ed670
             '9638fe89f1c7c297ba74964c80ba3ef4b241c4d95be58a2d6063e4bacdb844361beb9a5f0c39334a8a5aa735733e22a791497a2c32cc321485ad3213a74b40ed'
             '95d659e6c72d159ab63450fdc37c63517920f5b71a9b40e15bf5962e77061edb86864fd63c05d3a69c60badf405dc36374a42608211a706509b8ce61dd01d483')
 
-prepare() {
+_version_check() {
+    # This function is used by assets.conf!
+
     # Check if version has changed.
 
     local infourl='https://support.brother.com/g/b/downloadlist.aspx?c=fi&lang=fi&prod=dcpl2537dw_eu&os=127&flang=English'
