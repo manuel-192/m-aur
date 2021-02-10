@@ -1,48 +1,41 @@
+#!/bin/bash
+
 # Maintainer: lhark <lhark at hotmail dot fr>
 
 pkgname=brother-dcp-l2537dw-printer
+_folderid=dlf103575
+pkgver=4.0.0
+pkgrel=1
 
-InfoUrl="https://support.brother.com/g/b/downloadlist.aspx?c=fi&lang=fi&prod=dcpl2537dw_eu&os=128&flang=English"  # for DEB !!
-Old_pkgver=4.0.0  # manually change this when new version is detected
+pkgdesc="LPR and CUPS driver for the Brother DCP-L2537DW printer"
+arch=(x86_64)
+url="https://support.brother.com"
+license=("EULA")
+_pkgfile=dcpl2537dwpdrv-${pkgver}-$pkgrel.i386.deb
+source=( "https://download.brother.com/welcome/$_folderid/$_pkgfile")
+sha256sums=('4860711eb65de5ea1c20814fb9f061c18ac5b18e1375f77a7433a1804a6e6faf')
+depends=(cups)
 
-pkgver() {
-    local Url="$InfoUrl"
-    local Urldata=$(wget -q -O- "$Url")
+_version_check() {  # Not directly used by pacman/makepkg but by other software.
+
+    local Url="https://support.brother.com/g/b/downloadlist.aspx?c=fi&lang=fi&prod=dcpl2537dw_eu&os=128&flang=English"  # for DEB !!
+    local Urldata=$(curl -s "$Url")
     local Search="This is Generic LPR printer driver"
     local Line=$(echo "$Urldata" | grep -A3 "$Search" | tail -n1)
     local Version=$(echo "$Line" | sed 's|.*(\([0-9][0-9\.\-]*\)).*|\1|')
     local Pkgver=$(echo "$Version" | cut -d '-' -f1)
     # local Date=$(echo "$Line" | sed 's|.*>\([0-9][0-9/]*\).*|\1|')
 
-    if [ "$Pkgver" != "$Old_pkgver" ] ; then
-       printf "$Pkgver available! " >&2
-       Old_pkger=$Pkgver
-    fi
-
-    echo "$Pkgver"
-}
-
-brotherPrinterFolderId() {
-    local Url="$InfoUrl"
-    local Urldata=$(wget -q -O- "$Url")
-    local Search="Linux printer driver (deb package)"
-    local Line=$(echo "$Urldata" | grep "$Search")
+    Search="Linux printer driver (deb package)"
+    Line=$(echo "$Urldata" | grep "$Search")
     local folderid=$(echo "$Line" | sed 's|.*dlid=\([a-z0-9][a-z0-9]*\).*|\1|')
-    echo "$folderid"
-}
 
-pkgver=$(pkgver)
-pkgrel=1
-pkgdesc="LPR and CUPS driver for the Brother DCP-L2537DW printer"
-arch=("i686" "x86_64")
-url="https://support.brother.com"
-license=("EULA")
-_folder=$(brotherPrinterFolderId)
-_pkgfile=dcpl2537dwpdrv-${pkgver}-$pkgrel.i386.deb
-# source=( "https://download.brother.com/welcome/dlf103575/$_pkgfile")
-source=( "https://download.brother.com/welcome/$_folder/$_pkgfile")
-sha256sums=('4860711eb65de5ea1c20814fb9f061c18ac5b18e1375f77a7433a1804a6e6faf')
-depends=(cups)
+    if [ "$Pkgver" != "$pkgver" ] ; then
+        echo "==> $pkgname: new pkgver:    $Pkgver" >&2
+        echo "==> $pkgname: new _folderid: $folderid" >&2
+        return 1
+    fi
+}
 
 package() {
   # This package is based off of the brother-mfc-l2710dw package due to the identical packaging. All credit should go to enginefeeder101 for the script.
