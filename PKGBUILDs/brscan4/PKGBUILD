@@ -38,9 +38,9 @@ _version_check() {
     local date="$(    echo "$data" | grep -A4 "Scanner driver 64bit (rpm package)" | tail -n1 | sed -e 's|.*<em>||' -e 's|<br>.*||')"
 
     if [ "$version" != "${pkgver}-$pkgrel" ] || [ "$dlfolder" != "$_dlfolder" ] ; then
-        echo "Info: $pkgname: new version:     $version"
-        echo "Info: $pkgname: download folder: $dlfolder"
-        echo "Info: $pkgname: date:            $date"
+        echo "Info: $pkgname: new version:     $version" >&2
+        echo "Info: $pkgname: download folder: $dlfolder" >&2
+        echo "Info: $pkgname: date:            $date" >&2
         return 1
     fi
 }
