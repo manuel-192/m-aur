@@ -27,8 +27,6 @@ Main() {  # Not directly used by pacman/makepkg but by other software.
         echo "==> $pkgname: new pkgver:    $Pkgver" >&2
         echo "==> $pkgname: new _folderid: $folderid" >&2
         return 1
-    else
-        echo "Version: OK" >&2
     fi
 }
 
