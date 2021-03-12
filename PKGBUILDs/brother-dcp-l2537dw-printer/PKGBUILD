@@ -12,30 +12,16 @@ arch=(x86_64)
 url="https://support.brother.com"
 license=("EULA")
 _pkgfile=dcpl2537dwpdrv-${pkgver}-$pkgrel.i386.deb
-source=( "https://download.brother.com/welcome/$_folderid/$_pkgfile")
+source=(
+    "https://download.brother.com/welcome/$_folderid/$_pkgfile"
+    version-check
+)
 sha256sums=('4860711eb65de5ea1c20814fb9f061c18ac5b18e1375f77a7433a1804a6e6faf')
 depends=(cups)
 
-_version_check() {  # Not directly used by pacman/makepkg but by other software.
-
-    local Url="https://support.brother.com/g/b/downloadlist.aspx?c=fi&lang=fi&prod=dcpl2537dw_eu&os=128&flang=English"  # for DEB !!
-    local Urldata=$(curl -s "$Url")
-    local Search="This is Generic LPR printer driver"
-    local Line=$(echo "$Urldata" | grep -A3 "$Search" | tail -n1)
-    local Version=$(echo "$Line" | sed 's|.*(\([0-9][0-9\.\-]*\)).*|\1|')
-    local Pkgver=$(echo "$Version" | cut -d '-' -f1)
-    # local Date=$(echo "$Line" | sed 's|.*>\([0-9][0-9/]*\).*|\1|')
-
-    Search="Linux printer driver (deb package)"
-    Line=$(echo "$Urldata" | grep "$Search")
-    local folderid=$(echo "$Line" | sed 's|.*dlid=\([a-z0-9][a-z0-9]*\).*|\1|')
-
-    if [ "$Pkgver" != "$pkgver" ] ; then
-        echo "==> $pkgname: new pkgver:    $Pkgver" >&2
-        echo "==> $pkgname: new _folderid: $folderid" >&2
-        return 1
-    fi
-}
+#_version_check() {
+#    ./version-check $pkgname $pkgver
+#}
 
 package() {
   # This package is based off of the brother-mfc-l2710dw package due to the identical packaging. All credit should go to enginefeeder101 for the script.
