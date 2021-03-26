@@ -16,7 +16,7 @@ _fetch_aur_pkgbuild() {
 
     [ -r $PKGBUILD_AUR ] && return
 
-    echo "====> Running: ${FUNCNAME}()" >&2
+    #echo "====> Running: ${FUNCNAME}()" >&2
 
     local addr="https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=paper-icon-theme-git"
     wget -q --timeout=10 -O $PKGBUILD_AUR "$addr" || return 1
