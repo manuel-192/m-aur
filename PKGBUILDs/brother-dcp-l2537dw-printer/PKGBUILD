@@ -16,7 +16,8 @@ source=(
     "https://download.brother.com/welcome/$_folderid/$_pkgfile"
     version-check
 )
-sha256sums=('4860711eb65de5ea1c20814fb9f061c18ac5b18e1375f77a7433a1804a6e6faf')
+sha256sums=('4860711eb65de5ea1c20814fb9f061c18ac5b18e1375f77a7433a1804a6e6faf'
+            'c85b4aa87670e806860fc63ce0c3179fceeb86810a08d32e4f0b738457e13fea')
 depends=(cups)
 
 #_version_check() {
