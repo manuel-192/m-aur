@@ -2,7 +2,7 @@
 A selection of pre-built AUR packages.
 
 [Usage & News](../../../m-repo-info/blob/master/README.md)<br>
-[Repo details](../../../m-aur/releases)
+[Repo details](../../../m-aur/releases/tag/x86_64)
 
 ## Overview
 This repo contains certain hand picked and pre-built [AUR](https://aur.archlinux.org/packages) packages like
