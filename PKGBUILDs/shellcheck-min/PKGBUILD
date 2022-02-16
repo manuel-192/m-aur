@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Forked from shellcheck-bin 0.8.0-3
+
+_pkgname_orig=shellcheck
+
+pkgname=${_pkgname_orig}-min
+pkgver=0.8.0
+pkgrel=3
+url=https://github.com/koalaman/$_pkgname_orig
+pkgdesc="Shell script analysis tool (binary release, static)"
+license=(GPL3)
+arch=(x86_64)
+conflicts=(
+    $_pkgname_orig
+    ${_pkgname_orig}-bin
+    ${_pkgname_orig}-git
+    ${_pkgname_orig}-git-static
+)
+provides=($_pkgname_orig)
+source_x86_64=(
+    $url/releases/download/v$pkgver/${_pkgname_orig}-v$pkgver.linux.x86_64.tar.xz
+)
+sha512sums_x86_64=('89317d97adb341e627b709e86477734ce236e9fb290de8a8c41cdc62769a3225622fa609deffebeabe9edb71f5639a086f61b677947e3ec4bc07c540fcbd0973')
+
+package() {
+    install -Dm755 ${_pkgname_orig}-v$pkgver/$_pkgname_orig -t "$pkgdir"/usr/bin
+    rm -f ../${_pkgname_orig}-v$pkgver.linux.x86_64.tar.xz
+}
