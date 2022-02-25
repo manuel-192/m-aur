@@ -1,18 +1,33 @@
 #!/bin/bash
 
 _os-prober_prepare() {
-    git clone https://gitlab.manjaro.org/packages/community/os-prober.git
-    mv os-prober/PKGBUILD os-prober/PKGBUILD.orig
-    mv os-prober/* .
-    rm -rf os-prober
 
-    local Pkgver=$(grep ^pkgver= PKGBUILD.orig | cut -d '='  -f2)
-    sed -i PKGBUILD.orig \
+    # Use Manjaro's os-prober source code and change
+    # - source code address at debian to use https instead of http
+    # - checksums because of different .gitignore files!
+    # - pkgname to os-prober-manjaro
+    # - to provide os-prober "service"
+    
+    git clone https://gitlab.manjaro.org/packages/community/os-prober.git >/dev/null || return 1
+
+    mv os-prober/PKGBUILD os-prober/PKGBUILD.orig
+
+    local Pkgver=$(grep ^pkgver= os-prober/PKGBUILD.orig | cut -d'='  -f2)
+    sed -i os-prober/PKGBUILD.orig \
         -e "s|^source=.*|source=(https://salsa.debian.org/installer-team/os-prober/-/archive/$Pkgver/os-prober-$Pkgver.tar.gz|" \
         -e 's|^md5sums=.*|md5sums=(0e38be4aca7ae972670547ea9e09a28b|' \
         -e 's|^sha256sums=.*|sha256sums=(b98ebc3a6d81fc190b8ceea470d7f9232ecd0caec3802d706752df02816af6b8|' \
-        -e 's|cd "$pkgname"|cd "$pkgname"-"$pkgver"|'
+        -e 's|pkgname|_pkgname|g' \
+        -e 's|cd "$_pkgname"|cd "$_pkgname"-"$pkgver"|' \
+        -e '/^package()/a \  rm -f ../*.patch ../*.diff ../*.gz ../*.orig'
+
+    mv os-prober/* .
+    rm -rf os-prober
     source PKGBUILD.orig
+
+    pkgname=os-prober-manjaro
+    provides=(os-prober)
+    conflicts=(os-prober)
 }
 
 _os-prober_prepare
