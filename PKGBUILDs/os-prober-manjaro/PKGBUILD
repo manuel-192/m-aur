@@ -28,6 +28,7 @@ _os-prober_prepare() {
     pkgname=os-prober-manjaro
     provides=(os-prober)
     conflicts=(os-prober)
+    replaces=(os-prober)
 }
 
 _os-prober_prepare
