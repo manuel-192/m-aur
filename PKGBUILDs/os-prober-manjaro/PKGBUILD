@@ -8,7 +8,7 @@ _os-prober_prepare() {
     # - pkgname to os-prober-manjaro
     # - to provide os-prober "service"
     
-    git clone https://gitlab.manjaro.org/packages/community/os-prober.git >/dev/null || return 1
+    git clone https://gitlab.manjaro.org/packages/community/os-prober.git 2>/dev/null || return 1
 
     mv os-prober/PKGBUILD os-prober/PKGBUILD.orig
 
