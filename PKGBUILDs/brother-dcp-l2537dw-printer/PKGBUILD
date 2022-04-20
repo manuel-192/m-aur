@@ -10,6 +10,7 @@ pkgrel=1
 pkgdesc="LPR and CUPS driver for the Brother DCP-L2537DW printer"
 arch=(x86_64)
 url="https://support.brother.com"
+url="https://support.brother.com/g/b/downloadlist.aspx?c=fi&lang=fi&prod=dcpl2537dw_eu&os=128&flang=English"
 license=("EULA")
 _pkgfile=dcpl2537dwpdrv-${pkgver}-$pkgrel.i386.deb
 source=(
