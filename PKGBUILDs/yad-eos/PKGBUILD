@@ -11,7 +11,7 @@ _yad-eos_prepare() {
 
     # keep the original pkgname in PKGBUILD for building a package
     sed -i PKGBUILD.orig -e 's|${pkgname}|'$_pkgname_orig'|' \
-        -e 's|^pkgrel=1|pkgrel=1.1|'
+        -e 's|^pkgrel=1|pkgrel=1.2|'
     source PKGBUILD.orig
     # rm -f PKGBUILD.orig
 
