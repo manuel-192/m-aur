@@ -1,33 +1,13 @@
-#!/bin/bash
-
 # Maintainer: EndeavourOS-Team <info@endeavouros.com>
 
-# Latest yad release with a patch.
+pkgname=yad-eos
+depends=(yad)
 
-_yad-eos_prepare() {
-    local _pkgname_orig=yad
+pkgdesc="A fork of zenity - display graphical dialogs from shell scripts or command line"
+url="https://github.com/v1cont/yad"
+license=('GPL3')
+arch=('x86_64')
 
-    curl -Lsm 10 -o PKGBUILD.orig https://github.com/archlinux/svntogit-community/raw/packages/$_pkgname_orig/trunk/PKGBUILD || exit 1
-
-    # keep the original pkgname in PKGBUILD for building a package
-    sed -i PKGBUILD.orig -e 's|${pkgname}|'$_pkgname_orig'|' \
-        -e 's|^pkgrel=1|pkgrel=1.7|'
-    source PKGBUILD.orig
-    # rm -f PKGBUILD.orig
-
-    # now change to the new pkgname
-    pkgname=${_pkgname_orig}-eos
-
-    # Take care of conflicting packages:
-    #conflicts=($_pkgname_orig ${_pkgname_orig}-git)
-    # provides=($_pkgname_orig)
-    # provides=(yad-eos)
-    # replaces=(yad-eos)
-
-    # Add architectures
-    # arch+=(aarch64 armv7h)
-}
-
-_yad-eos_prepare
-unset -f _yad-eos_prepare
-# sha256sums=('65dbfa72a229f6cbd131470caf4f70fec98fe935a1436acb58c841fa2a8bddde')
+_pkgversiondata=$(LANG=C pacman -Si yad | grep -w ^Version)
+pkgver=$(echo "$_pkgversiondata" | sed 's|.* \([^-]*\)-\([0-9][0-9.]*\)|\1|')
+pkgrel=$(echo "$_pkgversiondata" | sed 's|.* \([^-]*\)-\([0-9][0-9.]*\)|\2|').1
