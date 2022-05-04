@@ -11,7 +11,7 @@ _yad-eos_prepare() {
 
     # keep the original pkgname in PKGBUILD for building a package
     sed -i PKGBUILD.orig -e 's|${pkgname}|'$_pkgname_orig'|' \
-        -e 's|^pkgrel=1|pkgrel=1.2|'
+        -e 's|^pkgrel=1|pkgrel=1.3|'
     source PKGBUILD.orig
     # rm -f PKGBUILD.orig
 
@@ -22,7 +22,7 @@ _yad-eos_prepare() {
     conflicts=($_pkgname_orig ${_pkgname_orig}-git yad-eos)
     # provides=($_pkgname_orig)
     provides=(yad-eos)
-    replaces=(yad-eos)
+    #replaces=(yad-eos)
 
     # Add architectures
     # arch+=(aarch64 armv7h)
