@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Maintainer: EndeavourOS-Team <info@endeavouros.com>
+
+# Latest yad release with a patch.
+
+_yad-eos_prepare() {
+    local _pkgname_orig=yad
+
+    curl -Lsm 10 -o PKGBUILD.orig https://github.com/archlinux/svntogit-community/raw/packages/$_pkgname_orig/trunk/PKGBUILD || exit 1
+
+    # keep the original pkgname in PKGBUILD for building a package
+    sed -i PKGBUILD.orig -e 's|${pkgname}|'$_pkgname_orig'|' \
+        -e 's|^pkgrel=1|pkgrel=1.1|'
+    source PKGBUILD.orig
+    # rm -f PKGBUILD.orig
+
+    # now change to the new pkgname
+    pkgname=${_pkgname_orig}-eos
+
+    # Take care of conflicting packages:
+    conflicts=($_pkgname_orig ${_pkgname_orig}-git)
+    # provides=($_pkgname_orig)
+
+    # Add architectures
+    # arch+=(aarch64 armv7h)
+}
+
+_yad-eos_prepare
+unset -f _yad-eos_prepare
+sha256sums=('65dbfa72a229f6cbd131470caf4f70fec98fe935a1436acb58c841fa2a8bddde')
