@@ -14,9 +14,6 @@ _os-prober_prepare() {
 
     local Pkgver=$(grep ^pkgver= os-prober/PKGBUILD.orig | cut -d'='  -f2)
     sed -i os-prober/PKGBUILD.orig \
-        -e "s|^source=.*|source=(https://salsa.debian.org/installer-team/os-prober/-/archive/$Pkgver/os-prober-$Pkgver.tar.gz|" \
-        -e 's|^md5sums=.*|md5sums=(0e38be4aca7ae972670547ea9e09a28b|' \
-        -e 's|^sha256sums=.*|sha256sums=(b98ebc3a6d81fc190b8ceea470d7f9232ecd0caec3802d706752df02816af6b8|' \
         -e 's|pkgname|_pkgname|g' \
         -e 's|cd "$_pkgname"|cd "$_pkgname"-"$pkgver"|' \
         -e '/^package()/a \  rm -f ../*.patch ../*.diff ../*.gz ../*.orig'
