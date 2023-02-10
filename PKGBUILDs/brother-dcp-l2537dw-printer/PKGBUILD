@@ -6,12 +6,13 @@ pkgname=brother-dcp-l2537dw-printer
 _folderid=dlf103575
 pkgver=4.0.0
 pkgrel=1.1
+pkgrel_orig=1
 
 pkgdesc="LPR and CUPS driver for the Brother DCP-L2537DW printer"
 arch=(x86_64)
 url="https://support.brother.com"
 license=("EULA")
-_pkgfile=dcpl2537dwpdrv-${pkgver}-$pkgrel.i386.deb
+_pkgfile=dcpl2537dwpdrv-${pkgver}-$pkgrel_orig.i386.deb
 source=(
     "https://download.brother.com/welcome/$_folderid/$_pkgfile"
     version-check
